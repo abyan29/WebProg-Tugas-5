@@ -49,7 +49,11 @@ def updateStudent(request, id):
             messages.success(request, 'Data Berhasil diupdate')
             return redirect('myFirstapp:read-data-student')
     else:
-        form = StudentRegisterForm(instance=member)
+        form = StudentRegisterForm(instance=initial={
+            'account_user_fullname': member.account_user_fullname,
+            'account_user_student_number': member.account_user_student_number,
+            'account_user_email': member.account_user_email,
+        })
     return render(request, 'update.html', {'form': form})
 
 
